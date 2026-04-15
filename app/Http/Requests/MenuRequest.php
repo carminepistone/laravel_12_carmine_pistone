@@ -24,7 +24,8 @@ class MenuRequest extends FormRequest
     {
         return [
             'nome'=>'required|min:3',
-            // 'categoria'=>'required',
+            'categories'   => 'required|array',
+            'categories.*' => 'exists:categories,id',
             'ingredienti'=>'required',
             'prezzo'=>'required|numeric',
             'img'=>'required|image'
@@ -37,7 +38,8 @@ class MenuRequest extends FormRequest
     public function messages(){
         return [
             'nome.required'=>'Il nome è obbligatorio',
-            // 'categoria.required'=>'La categoria è obbligatoria',
+            'categories.required'=>'La categoria è obbligatoria',
+            'categories.array'=>'Una delle categorie selezionate non è valida',
             'ingredienti.required'=>'Gli ingredienti sono obbligatori',
             'prezzo.required'=>'Il prezzo è obbligatorio',
             'nome.min'=>'Il nome deve avere almeno 3 caratteri',

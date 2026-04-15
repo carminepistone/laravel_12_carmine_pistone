@@ -35,7 +35,8 @@ class MenuEditRequest extends FormRequest
         public function messages(){
         return [
             'nome.required'=>'Il nome è obbligatorio',
-            'categoria.required'=>'La categoria è obbligatoria',
+            'categories.required'=>'La categoria è obbligatoria',
+            'categories.array'=>'Una delle categorie selezionate non è valida',
             'ingredienti.required'=>'Gli ingredienti sono obbligatori',
             'prezzo.required'=>'Il prezzo è obbligatorio',
             'nome.min'=>'Il nome deve avere almeno 3 caratteri',
