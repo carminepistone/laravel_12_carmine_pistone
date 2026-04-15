@@ -14,15 +14,13 @@
                         </ul>
                     </div>
                 @endif
-                <form method="POST" action="{{ route('menu.update', $menu) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('article.update', $article) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome', $menu->nome) }}">
+                        <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome', $article->nome) }}">
                     </div>
-
-
                     <div class="mb-3 dashboard container-fluid">
                         <label class="form-label">Categoria:</label>
                         @foreach ($categories as $category)
@@ -32,7 +30,7 @@
                                     id="{{ 'categoryCheck' . $category->id }}"
                                     name="categories[]"
                                     value="{{ $category->id }}"
-                                    {{ $menu->categories->contains($category->id) ? 'checked' : '' }}
+                                    {{ $article->categories->contains($category->id) ? 'checked' : '' }}
                                 >
                                 <label for="{{ 'categoryCheck' . $category->id }}">
                                     {{ $category->name }}
@@ -41,22 +39,20 @@
                         @endforeach
                         <p>Non vedi la categoria corretta? <a href="{{ route('category.create') }}">Inseriscila qui</a></p>
                     </div>
-
-                    
                     <div class="mb-3">
                         <label for="ingredienti" class="form-label">Ingredienti:</label>
-                        <textarea name="ingredienti" id="ingredienti" cols="30" rows="6" class="form-control">{{ old('ingredienti', $menu->ingredienti) }}</textarea>
+                        <textarea name="ingredienti" id="ingredienti" cols="30" rows="6" class="form-control">{{ old('ingredienti', $article->ingredienti) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="prezzo" class="form-label">Prezzo:</label>
-                        <input type="number" class="form-control" id="prezzo" name="prezzo" step="0.01" min="0" value="{{ old('prezzo', $menu->prezzo) }}">
+                        <input type="number" class="form-control" id="prezzo" name="prezzo" step="0.01" min="0" value="{{ old('prezzo', $article->prezzo) }}">
                     </div>
                     <div class="mb-3">
                         <label for="img" class="form-label">Inserire un'immagine:</label>
                         <input type="file" class="form-control" id="img" name="img">
-                        @if ($menu->img)
+                        @if ($article->img)
                             <small class="text-white">Immagine attuale:</small><br>
-                            <img src="{{ asset('storage/' . $menu->img) }}" alt="immagine piatto" width="150" class="mt-2">
+                            <img src="{{ asset('storage/' . $article->img) }}" alt="immagine articolo" width="150" class="mt-2">
                         @endif
                     </div>
                     <button type="submit" class="btn custombtn">Salva le modifiche</button>

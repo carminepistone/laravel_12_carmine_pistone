@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MenuRequest extends FormRequest
+class ArticleEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,20 +22,17 @@ class MenuRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'nome'=>'required|min:3',
-            'categories'   => 'required|array',
-            'categories.*' => 'exists:categories,id',
-            'ingredienti'=>'required',
-            'prezzo'=>'required|numeric',
-            'img'=>'required|image'
-
-        ];
+    return [
+        'nome'         => 'required|min:3',
+        'ingredienti'  => 'required',
+        'prezzo'       => 'required|numeric',
+        'categories'   => 'nullable|array',
+        'categories.*' => 'exists:categories,id',
+        'img'          => 'nullable|image',
+    ];
     }
 
-
-
-    public function messages(){
+        public function messages(){
         return [
             'nome.required'=>'Il nome è obbligatorio',
             'categories.required'=>'La categoria è obbligatoria',
@@ -49,7 +46,3 @@ class MenuRequest extends FormRequest
         ];
     }
 }
-
-
-
-

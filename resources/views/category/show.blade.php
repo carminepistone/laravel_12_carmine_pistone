@@ -8,15 +8,15 @@
         </div>
 
         <div class="row justify-content-center g-4"> 
-            @forelse ($category->menus as $menu)
+            @forelse ($category->articles as $article)
                 
                 <div class="col-12 col-sm-6 col-lg-6 d-flex justify-content-center">
-                    <x-card :menu="$menu" class="w-100" />
+                    <x-card :article="$article" class="w-100" />
                 </div>
             @empty
                 <div class="col-12 col-md-8 text-center py-5">
                     <h4 class="text-muted">Nessun piatto collegato a questa categoria</h4>
-                    <a href="{{ route('menu.create') }}" class="btn custombtn mt-3 shadow-sm">Crealo tu!</a>
+                    <a href="{{ route('article.create') }}" class="btn custombtn mt-3 shadow-sm">Crealo tu!</a>
                 </div>
             @endforelse
         </div>

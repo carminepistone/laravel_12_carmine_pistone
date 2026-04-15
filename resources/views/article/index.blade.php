@@ -7,8 +7,8 @@
             </div>
 
 
-                @foreach ($vociMenu as $menu)
-                    <x-card :menu="$menu"></x-card>
+                @foreach ($articles as $article)
+                    <x-card :article="$article"/>
                 @endforeach
 
         </div>

@@ -6,11 +6,11 @@ use Illuminate\View\Component;
 
 class Card extends Component
 {
-    public $menu;
+    public $article;
 
-    public function __construct($menu)
+    public function __construct($article)
     {
-        $this->menu = $menu;
+        $this->article = $article;
     }
 
     public function render()

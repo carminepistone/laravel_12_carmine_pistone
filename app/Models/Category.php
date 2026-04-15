@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Menu;
+use App\Models\Article;
 
 class Category extends Model
 {
@@ -13,7 +13,7 @@ class Category extends Model
     ];
 
 
-    public function menus(){
-        return $this->belongsToMany(Menu::class);
+    public function articles(){
+        return $this->belongsToMany(Article::class);
     }
 }

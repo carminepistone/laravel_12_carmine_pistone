@@ -9,13 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-class Menu extends Model
+class Article extends Model
 {
 
     use HasFactory;
     protected $fillable = [
         'nome', 
-
         'ingredienti', 
         'prezzo', 
         'img',

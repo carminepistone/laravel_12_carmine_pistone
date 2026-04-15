@@ -1,30 +1,31 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\MenuRequest;
-use App\Http\Requests\MenuEditRequest;
+use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\ArticleEditRequest;
+use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 
-class MenuController extends Controller
+class ArticleController extends Controller
 {
     public function index()
     {
-        $vociMenu = Menu::all();
-        return view('menu.index', compact('vociMenu'));
+        $articles = Article::all();
+        return view('article.index', compact('articles'));
     }
 
     public function create()
     {
         $categories = Category::all();
-        return view('menu.create', compact('categories'));
+        return view('article.create', compact('categories'));
     }
 
-public function store(MenuRequest $request)
+public function store(ArticleRequest $request)
 {
-    $menu = Menu::create([
+    $article = Article::create([
         'nome'        => $request->nome,
         'ingredienti' => $request->ingredienti,
         'prezzo'      => $request->prezzo,
@@ -33,56 +34,56 @@ public function store(MenuRequest $request)
     ]);
 
 
-    $menu->categories()->sync($request->categories ?? []);
+    $article->categories()->sync($request->categories ?? []);
 
     return redirect()->route('homepage')->with('successMessage', 'Hai correttamente inserito la ricetta!');
 }
 
-    public function show(Menu $menu)
+    public function show(Article $article)
     {
         return view('menu.show', compact('menu'));
     }
 
-    public function edit(Menu $menu)
+    public function edit(Article $article)
     {
-        if ($menu->user_id !== Auth::id()) {
+        if ($article->user_id !== Auth::id()) {
             return redirect()->route('homepage')->with('error', 'Non sei autorizzato!');
         }
 
         $categories = Category::all();
-        return view('menu.edit', compact('menu', 'categories'));
+        return view('article.edit', compact('article', 'categories'));
     }
 
-    public function update(MenuEditRequest $request, Menu $menu)
+    public function update(ArticleEditRequest $request, Article $article)
     {
-        if ($menu->user_id !== Auth::id()) {
+        if ($article->user_id !== Auth::id()) {
             return redirect()->route('homepage')->with('error', 'Non sei autorizzato!');
         }
 
-        $menu->update([
+        $article->update([
             'nome'        => $request->nome,
             'ingredienti' => $request->ingredienti,
             'prezzo'      => $request->prezzo,
         ]);
 
-        $menu->categories()->sync($request->categories ?? []);
+        $article->categories()->sync($request->categories ?? []);
 
         if ($request->hasFile('img')) {
-            $menu->update([
+            $article->update([
                 'img' => $request->file('img')->store('images', 'public'),
             ]);
         }
 
-        return redirect()->route('menu.index')->with('success', 'Piatto aggiornato!');
+        return redirect()->route('article.index')->with('success', 'Piatto aggiornato!');
     }
 
-    public function destroy(Menu $menu)
+    public function destroy(Article $article)
     {
-        if ($menu->user_id !== Auth::id()) {
+        if ($article->user_id !== Auth::id()) {
             return redirect()->route('homepage')->with('error', 'Non sei autorizzato!');
         }
 
-        $menu->delete();
-        return redirect()->route('menu.index')->with('success', 'Piatto eliminato!');
+        $article->delete();
+        return redirect()->route('article.index')->with('success', 'Piatto eliminato!');
     }
 }

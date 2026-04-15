@@ -13,10 +13,10 @@
                     <a class="nav-link" href="{{ route('homepage') }}">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('menu.index') }}">Menù</a>
+                    <a class="nav-link" href="{{ route('article.index') }}">Menù</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('menu.create') }}">Inserisci il tuo piatto</a>
+                    <a class="nav-link" href="{{ route('article.create') }}">Inserisci il tuo piatto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('category.index') }}">Categorie</a>

@@ -1,20 +1,20 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 
 Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
 Route::get('/contattaci', [PublicController::class, 'contattaci'])->name('contattaci');
 Route::post('/contattaci', [PublicController::class, 'contactUsForm'])->name('contactUsForm');
 
-Route::get('/menu/index', [MenuController::class, 'index'])->name('menu.index');
-Route::get('/menu/create', [MenuController::class, 'create'])->name('menu.create')->middleware('auth');
-Route::post('/menu/store', [MenuController::class, 'store'])->name('menu.store')->middleware('auth');
-Route::get('/menu/{menu}', [MenuController::class, 'show'])->name('menu.show');
-Route::get('/menu/{menu}/edit', [MenuController::class, 'edit'])->name('menu.edit')->middleware('auth');
-Route::put('/menu/{menu}', [MenuController::class, 'update'])->name('menu.update')->middleware('auth');
-Route::delete('/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy')->middleware('auth');
+Route::get('/article/index', [ArticleController::class, 'index'])->name('article.index');
+Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create')->middleware('auth');
+Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store')->middleware('auth');
+Route::get('/article/{article}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit')->middleware('auth');
+Route::put('/article/{article}', [ArticleController::class, 'update'])->name('article.update')->middleware('auth');
+Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('article.destroy')->middleware('auth');
 
 
 Route::get('/user/profile', [PublicController::class,'profile'])->name('user.profile');

@@ -5,7 +5,16 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-6 col-md-8">
-                <form method="POST" action="{{ route('menu.store') }}" enctype="multipart/form-data">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome:</label>
