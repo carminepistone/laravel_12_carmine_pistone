@@ -41,7 +41,7 @@ public function store(ArticleRequest $request)
 
     public function show(Article $article)
     {
-        return view('menu.show', compact('menu'));
+        return view('article.show', compact('article'));
     }
 
     public function edit(Article $article)
